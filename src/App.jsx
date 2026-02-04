@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Products from './pages/Products'
 import Layout from './Layout/Layout'
 import Login from './pages/Login'
+import ProductDetails from './pages/ProductDetails'
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Route element={<Layout />}>
         <Route index element={<Home/>}/>
         <Route path='product' element={<Products/>}/> 
+        <Route path="product/:id" element={<ProductDetails/>}/>
         
 
         </Route>

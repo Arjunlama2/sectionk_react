@@ -1,10 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
 
 function Card(props) {
     const data = props.data
+    const navigate=useNavigate()
    
     return (
-        <div className='w-[270px] h-[361px] '>
+        <div className='w-[270px] h-[361px] ' onClick={()=>navigate(`product/${data._id}`)}>
             <div className='bg-[#9da0ab] p-8'>
                 <img src={data.image} alt="" />
             </div>
