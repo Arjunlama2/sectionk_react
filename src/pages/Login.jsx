@@ -1,6 +1,9 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
 function Login() {
+  const navigate=useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,20 +17,24 @@ function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch("https://abhit-batch-bn.onrender.com/api/v1/user/login", {
-      method: "POST",
-      body:JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    // API call here
+    try {
+      const response = await axios.post(
+        "https://abhit-batch-bn.onrender.com/api/v1/user/login",
+        formData
+      );
+
+      console.log(response.data);
+      localStorage.setItem("token",response.data.token)
+      localStorage.setItem("username",response.data.user.username)
+      navigate("/")
+
+    } catch (error) {
+      console.error(error.response?.data || error.message);
+    }
   };
 
   return (
