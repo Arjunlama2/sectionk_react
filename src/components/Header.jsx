@@ -21,7 +21,7 @@ function Header() {
 
                 </div>
 
-                <div className='flex gap-3'>
+                <div className='hidden md:flex gap-3 '>
                     <div className='flex items-center'>
                         <p>English</p>
                         <FaAngleDown />

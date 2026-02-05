@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 
 function Login() {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
+
+  const token = localStorage.getItem("token")
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,14 +30,19 @@ function Login() {
       );
 
       console.log(response.data);
-      localStorage.setItem("token",response.data.token)
-      localStorage.setItem("username",response.data.user.username)
+      localStorage.setItem("token", response.data.token)
+      localStorage.setItem("username", response.data.user.username)
       navigate("/")
 
     } catch (error) {
       console.error(error.response?.data || error.message);
     }
   };
+
+
+  if (token) {
+    return <Navigate to={"/"} />
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">

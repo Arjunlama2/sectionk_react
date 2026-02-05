@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router'
 import { CiSearch } from "react-icons/ci";
+import { CiMenuBurger } from "react-icons/ci";
+
 
 const navigations = [
     {
@@ -24,9 +26,10 @@ function Navbar() {
     // const [data, setData] = useState()
 
     return (
-        <div className='px-20 flex justify-between items-center'>
+        <>
+        <div className='hidden px-20 md:flex justify-between items-center'>
             <div className='flex items-center gap-8'>
-                <h1 className='text-[#0D0E43] font-semibold text-[24px]' onClick={() => setData("Hekto")} >Hekto</h1>
+                <h1 className='text-[#0D0E43] font-semibold text-[24px]'  >Hekto</h1>
                 <nav className='flex gap-2'>
                     {
                         navigations.map((el) => {
@@ -41,13 +44,15 @@ function Navbar() {
                 <div className='bg-[#FB2E86] p-2'>
                     <CiSearch className='' />
                 </div>
-{/* 
-                {
-                    data
-                } */}
+
 
             </div>
         </div>
+
+        <div className='fixed  md:hidden top-10 right-5'>
+            <CiMenuBurger />
+        </div>
+        </>
     )
 }
 
